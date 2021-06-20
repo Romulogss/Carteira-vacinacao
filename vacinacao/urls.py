@@ -16,14 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core.views import (
+    delete_crianca,
     index,
     create,
-    crianca
+    crianca,
+    vacinacao_index
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('crianca', create, name='crianca'),
-    path('detail/<str:id>', crianca, name='detail')
+    path('detail/<str:id>', crianca, name='detail'),
+    path('delete/<str:id>', delete_crianca, name='delete'),
+    path('vacinacao/<str:id>', vacinacao_index, name='vacinacao_index')
 ]

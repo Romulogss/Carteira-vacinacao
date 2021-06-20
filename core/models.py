@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Crianca(models.Model):
@@ -12,6 +13,10 @@ class Crianca(models.Model):
 
     def __str__(self):
         return self.nome
+
+    def get_absolute_url(self):
+        return reverse("detail", kwargs={"id": self.pk})
+    
 
 class Vacina(models.Model):
     nome = models.CharField(
@@ -30,6 +35,9 @@ class Vacinacao(models.Model):
         max_length=20
         )
     data = models.DateField()
+    enfermeiro = models.CharField(
+        max_length=50
+    )
     crianca = models.ForeignKey(
         Crianca,
         on_delete=models.CASCADE
