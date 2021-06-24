@@ -7,7 +7,7 @@ class Crianca(models.Model):
         max_length=50
         )
     cpf = models.CharField(
-        max_length=11,
+        max_length=15,
         unique=True
         )
 
@@ -16,7 +16,6 @@ class Crianca(models.Model):
 
     def get_absolute_url(self):
         return reverse("detail", kwargs={"id": self.pk})
-    
 
 class Vacina(models.Model):
     nome = models.CharField(
