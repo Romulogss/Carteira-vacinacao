@@ -11,23 +11,20 @@ from .forms import (
     VacinaForm,
     VacinacaoForm,
 )
+
 # Create your views here.
 def create(request):
     crianca = CriancaForm(request.POST or None)
-    pprint(dir(crianca))
     if crianca.is_valid():
         crianca.save()
         return redirect('index')
     return render(request, 'crianca/crianca.html', {'form': crianca})
 
-
 def update(request, id):
     pass
 
-
 def index(request):
     return render(request, 'crianca/index.html', {'obj': CriancaDAO.find_all()})
-
 
 def crianca(request, id):
     result =  CriancaDAO.find_one(id)
@@ -40,7 +37,6 @@ def crianca(request, id):
 def delete_crianca(request, id):
     result = CriancaDAO.delete(id)
     return redirect('index')
-
 
 def vacinacao_index(request, id):
     crianca = CriancaDAO.find_one(id)
