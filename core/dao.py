@@ -32,14 +32,12 @@ class CriancaDAO:
         crianca.delete()
         return f'{nome} foi deletada com sucesso!'
 
-
 class VacinacaoDAO:
     manager = Vacinacao.objects
     @staticmethod
     def find_all():
         vacinacao = __class__.manager.all()
         return vacinacao
-
 
 class VacinaDAO:
     manager = Vacina.objects
