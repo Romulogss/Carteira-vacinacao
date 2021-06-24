@@ -7,7 +7,7 @@ class Crianca(models.Model):
         max_length=50
         )
     cpf = models.CharField(
-        max_length=15,
+        max_length=11,
         unique=True
         )
 
@@ -47,4 +47,4 @@ class Vacinacao(models.Model):
     )
 
     def __str__(self):
-        return f'{self.crianca.nome} | {self.data}'
+        return f'{self.vacina.nome} | {self.data}'

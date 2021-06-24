@@ -7,26 +7,25 @@ html, body {
 
 h1#topo {
     background-color: gainsboro;
-        position: relative;
-        padding: 30px;
-        top: -30px;
-
+    position: relative;
+    padding: 30px;
+    top: -30px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 30pt;
-        color: black;
+    font-size: 30pt;
+    color: black;
 }
 
 nav#menu ul {
     text-transform: uppercase;
     position: relative;
-        top: -20px;
+    top: -20px;
 }
 
 nav#menu li {
     display: inline-block;
     background-color: #A7C940;
-        padding: 10px;
-        margin: 10px;
+    padding: 10px;
+    margin: 10px;
     transition: background-color 1s;
 }
 
@@ -36,6 +35,6 @@ nav#menu li:hover {
 
 nav#menu a {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-        color: black;
-        text-decoration: none;
+    color: black;
+    text-decoration: none;
 }

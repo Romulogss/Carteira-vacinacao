@@ -1,102 +1,112 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vacinas de {{ crianca.nome }}</title>
-</head>
-
-<body class="container">
-    {% load bootstrap4 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript jquery='full' %}
-    {% bootstrap_messages %}
-    <div class="row justify-content-center" style="text-align: center;">
-        <div class="col">
-            <h2> Vacinas de {{ crianca.nome }} </h2>
-        </div>
+{% block content %}
+<div class="row justify-content-center" style="text-align: center;">
+    <div class="col">
+        <h2> Vacinas de {{ crianca.nome }} </h2>
     </div>
-    <form method="POST">
-        {% csrf_token %}
-        <!-- {% bootstrap_form form exclude='vacina'%} -->
-        <select name="crianca" required id="id_crianca" hidden>
-            <option value="{{crianca.id}}"></option>
-        </select>
-        <div class="row">
-            <div class="col form-group">
-                <label for="id_vacina" class="form-label">Vacina</label>
-                <select name="vacina" class="form-control" title required id="id_vacina">
-                    <option value="" selected>SELECIONE A VACINA</option>
-                    {% for vacina in vacinas %}
-                    <option value="{{vacina.id}}">{{ vacina }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="col form-group">
-                <label for="id_lote">Lote</label>
-                <input type="text" name="lote" maxlength="20" class="form-control" placeholder="Lote" title required
-                    id="id_lote">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col form-group">
-                <label for="id_enfermeiro">Enfermeiro(a)</label>
-                <input type="text" name="enfermeiro" maxlength="50" class="form-control" placeholder="Enfermeiro(a)"
-                    title required id="id_enfermeiro">
-            </div>
-            <div class="col form-group">
-                <label for="id_data">Data</label>
-                <input type="date" name="data" class="form-control" placeholder="Data" title required id="id_data">
-            </div>
-        </div>
-        {% buttons %}
-        {% bootstrap_button "Registrar" button_type="submit" button_class="btn-primary" %}
-        {% bootstrap_button "Cancelar" button_type="reset" button_class="btn-danger" %}
-        {% endbuttons %}
-    </form>
+</div>
+<form method="POST">
+    {% csrf_token %}
+    <select name="crianca" required id="id_crianca" hidden>
+        <option value="{{crianca.id}}"></option>
+    </select>
     <div class="row">
-        <div class="col">
-            <table class="table table-bordered text-center">
-                <thead>
-                    <th>VACINA</th>
-                    <th>LOTE</th>
-                    <th>DATA DA APLICAÇÃO</th>
-                    <th>ENFERMEIRO(A) APLICADOR(A)</th>
-                </thead>
-                <tbody>
-                    {% for v in page_obj %}
-                        <tr>
-                            <td>{{ v.vacina.nome }}</td>
-                            <td>{{ v.lote }}</td>
-                            <td>{{ v.data }}</td>
-                            <td>{{ v.enfermeiro }}</td>
-                        </tr>
-                    {% endfor %}   
-                </tbody>
-            </table>
+        <div class="col form-group">
+            <label for="id_vacina" class="form-label">Vacina</label>
+            <select name="vacina" class="form-control" title required id="id_vacina">
+                <option value="" selected>SELECIONE A VACINA</option>
+                {% for vacina in vacinas %}
+                <option value="{{vacina.id}}">{{ vacina }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col form-group">
+            <label for="id_lote">Lote</label>
+            <input type="text" name="lote" maxlength="20" class="form-control" placeholder="Lote" title required
+                id="id_lote">
         </div>
     </div>
-    <div class="row text-center">
-        <div class="col">
-            <span class="step-links">
-                {% if page_obj.has_previous %}
-                    <a href="?page=1" class="btn-sm btn-secondary">&laquo; Primeira</a>
-                    <a href="?page={{ page_obj.previous_page_number }}" class="btn-sm btn-light">Anterior</a>
-                {% endif %}
-        
-                <span class="current">
-                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
-                </span>
-        
-                {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}" class="btn-sm btn-light">Próxima</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn-sm btn-secondary">Última &raquo;</a>
-                {% endif %}
-            </span>
+    <div class="row">
+        <div class="col form-group">
+            <label for="id_enfermeiro">Enfermeiro(a)</label>
+            <input type="text" name="enfermeiro" maxlength="50" class="form-control" placeholder="Enfermeiro(a)" title
+                required id="id_enfermeiro">
+        </div>
+        <div class="col form-group">
+            <label for="id_data">Data</label>
+            <input type="date" name="data" class="form-control" placeholder="Data" title required id="id_data">
         </div>
     </div>
-</body>
+    <button class="btn btn-success" type="submit">Registrar</button>
+    <button class="btn btn-danger" type="reset">Cancelar</button>
+</form>
+<hr>
+<div class="row">
+    <div class="col">
+        <table class="table table-bordered text-center">
+            <thead>
+                <th>VACINA</th>
+                <th>LOTE</th>
+                <th>DATA DA APLICAÇÃO</th>
+                <th>ENFERMEIRO(A) APLICADOR(A)</th>
+                <th>Deletar</th>
+            </thead>
+            <tbody>
+                {% for v in page_obj %}
+                <form action="delete/{{v.id}}" method="POST">
+                    {% csrf_token %}
+                    <div class="modal fade" id="exampleModal{{v.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    Tem certeza que deseja remover a vacinação de {{v.vacina.nome}} aplicada em
+                                    {{v.data}}
+                                </div>
+                                <div class="modal-footer">
 
-</html>
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Não</button>
+                                    <button type="submit" class="btn btn-danger">Sim</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <tr>
+                    <td>{{ v.vacina.nome }}</td>
+                    <td>{{ v.lote }}</td>
+                    <td>{{ v.data }}</td>
+                    <td>{{ v.enfermeiro }}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal{{v.id}}">
+                            <i class="fas fa-minus-circle"></i>
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row text-center">
+    <div class="col">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page=1" class="btn-sm btn-secondary">&laquo; Primeira</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="btn-sm btn-light">Anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="btn-sm btn-light">Próxima</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="btn-sm btn-secondary">Última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock %}

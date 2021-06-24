@@ -1,26 +1,40 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <title>Inicial</title>
-</head>
-<body>
-    <h1 id='topo' style="text-align: center">LISTA DE CRIANÇAS</h1>
-    <nav id='menu'>
-        <ul>
-            <li><a href="crianca" ><b>NOVA CRIANÇA</b></a></li>
-            <li><a href="detail"><b>LISTAR VACINAS</b></a></li>
-        </ul>
-    </nav>
-    <table>
-        <td>CPF</td><td>NOME</td><td>OPERAÇÕES</td>
-        {% for crianca in obj %}
-            <tr><td>{{ crianca }}<br></td></tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h2 class="text-center">Lista de Crianças</h2>
+    </div>
+</div>
+<div class="row text-center">
+    <div class="col">
+        <a class="btn btn-primary" href="{% url 'crianca_create' %}">Cadastrar Criança <i class="fas fa-plus"></i></a>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col">
+        <table class="table table-bordered text-center">
+            <thead>
+                <th>NOME</th>
+                <th>CPF</th>
+                <th>operações</th>
+            </thead>
+            <tbody>
+                {% for crianca in lista_criancas %}
+                <tr>
+                    <td>
+                        {{ crianca.nome }}
+                    </td>
+                    <td>
+                        {{ crianca.cpf }}
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

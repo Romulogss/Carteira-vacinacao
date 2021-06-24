@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col">
+            <label for="id_nome">Nome</label>
+            <input class="form-control" type="text" name="nome" id="id_nome" maxlength="50" placeholder="NOME COMPLETO">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label for="id_nome">C.P.F</label>
+            <input class="form-control" type="text" name="cpf" id="id_cpf" maxlength="11" placeholder="00000000000">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-success" type="submit">Salvar</button>
+            <a href="{% url 'index' %}" class="btn btn-danger">Cancelar</a>
+        </div>
+    </div>
+</form>
+{% endblock %}

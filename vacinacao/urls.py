@@ -17,17 +17,19 @@ from django.contrib import admin
 from django.urls import path
 from core.views import (
     delete_crianca,
-    index,
-    create,
+    crianca_index,
+    ciranca_create,
     crianca,
+    vacinacao_delete,
     vacinacao_index
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'),
-    path('crianca', create, name='crianca'),
+    path('', crianca_index, name='index'),
+    path('crianca', ciranca_create, name='crianca_create'),
     path('detail/<str:id>', crianca, name='detail'),
-    path('delete/<str:id>', delete_crianca, name='delete'),
-    path('vacinacao/<str:id>', vacinacao_index, name='vacinacao_index')
+    path('delete/<str:id>', delete_crianca, name='crianca_delete'),
+    path('vacinacao/<str:id>', vacinacao_index, name='vacinacao_index'),
+    path('vacinacao/delete/<str:id>', vacinacao_delete, name='vacinacao_delete')
 ]
