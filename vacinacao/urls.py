@@ -18,8 +18,9 @@ from django.contrib import admin
 from django.urls import path
 from core.views import (
     crianca_index,
-    ciranca_create,
+    crianca_create,
     crianca,
+    crianca_update,
     delete_crianca,
 
     vacinacao_delete,
@@ -35,9 +36,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', crianca_index, name='index'),
-    path('crianca', ciranca_create, name='crianca_create'),
-    path('detail/<str:id>', crianca, name='detail'),
-    path('delete/<str:id>', delete_crianca, name='crianca_delete'),
+    path('crianca/create', crianca_create, name='crianca_create'),
+    path('crianca/update/<str:id>', crianca_update, name='crianca_update'),
+    path('crianca/delete/<str:id>', delete_crianca, name='crianca_delete'),
 
     path('vacinacao/<str:id>', vacinacao_index, name='vacinacao_index'),
     path('vacinacao/delete/<str:id>', vacinacao_delete, name='vacinacao_delete'),

@@ -10,6 +10,10 @@ class CriancaDAO:
     manager = Crianca.objects
 
     @staticmethod
+    def save(crianca):
+        pass
+
+    @staticmethod
     def find_all():
         criancas = __class__.manager.all()
         return criancas
@@ -30,7 +34,6 @@ class CriancaDAO:
         crianca = __class__.find_one(id)
         nome = crianca.nome
         crianca.delete()
-        return f'{nome} foi deletada com sucesso!'
 
 class VacinacaoDAO:
     manager = Vacinacao.objects

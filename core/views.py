@@ -13,7 +13,21 @@ from .forms import (
 )
 
 # Create your views here.
-def ciranca_create(request):
+def crianca_index(request):
+    lista_criancas = CriancaDAO.find_all()
+    paginator = Paginator(lista_criancas, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    lista_criancas = page_obj.object_list
+    return render(
+        request,
+        'crianca/index.html',
+        {
+            'lista_criancas': lista_criancas,
+            'paginator': page_obj
+        })
+
+def crianca_create(request):
     crianca = CriancaForm(request.POST or None)
     if crianca.is_valid():
         crianca.save()
@@ -28,9 +42,6 @@ def crianca_update(request, id):
         return redirect('index')
     return render(request, 'crianca/form.html', {'crianca': crianca})
 
-def crianca_index(request):
-    lista_criancas = CriancaDAO.find_all()
-    return render(request, 'crianca/index.html', {'lista_criancas': lista_criancas })
 
 def crianca(request, id):
     result =  CriancaDAO.find_one(id)
@@ -41,8 +52,9 @@ def crianca(request, id):
         )
 
 def delete_crianca(request, id):
-    result = CriancaDAO.delete(id)
-    return redirect('index')
+    if request.method == "POST":
+        CriancaDAO.delete(id)
+        return redirect('index')
 
 def vacinacao_index(request, id):
     crianca = CriancaDAO.find_one(id)
@@ -55,14 +67,16 @@ def vacinacao_index(request, id):
     paginator = Paginator(lista_vacinacao, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    lista_vacinacao = page_obj.object_list
     return render(
         request,
         'vacinacao/index.html',
         {
-            'page_obj': page_obj,
+            'paginator': page_obj,
             'form': form,
             'crianca': crianca,
-            'vacinas': vacinas
+            'vacinas': vacinas,
+            'lista_vacinacao': lista_vacinacao
         }
         )
 

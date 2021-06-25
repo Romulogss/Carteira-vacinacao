@@ -52,7 +52,7 @@
                 <th id='table-top'>DELETAR</th>
             </thead>
             <tbody>
-                {% for v in page_obj %}
+                {% for v in lista_vacinacao %}
                 <form action="delete/{{v.id}}" method="POST">
                     {% csrf_token %}
                     <div class="modal fade" id="exampleModal{{v.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -88,21 +88,23 @@
         </table>
     </div>
 </div>
+{% if paginator.has_next or paginator.has_previous %}
 <div class="row text-center">
     <div class="col">
         <span class="step-links">
-            {% if page_obj.has_previous %}
+            {% if paginator.has_previous %}
             <a href="?page=1" class="btn-sm btn-secondary">&laquo; Primeira</a>
-            <a href="?page={{ page_obj.previous_page_number }}" class="btn-sm btn-light">Anterior</a>
+            <a href="?page={{ paginator.previous_page_number }}" class="btn-sm btn-light">Anterior</a>
             {% endif %}
             <span class="current">
-                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                Página {{ paginator.number }} de {{ paginator.paginator.num_pages }}.
             </span>
-            {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}" class="btn-sm btn-light">Próxima</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}" class="btn-sm btn-secondary">Última &raquo;</a>
+            {% if paginator.has_next %}
+            <a href="?page={{ paginator.next_page_number }}" class="btn-sm btn-light">Próxima</a>
+            <a href="?page={{ paginator.paginator.num_pages }}" class="btn-sm btn-secondary">Última &raquo;</a>
             {% endif %}
         </span>
     </div>
 </div>
+{% endif %}
 {% endblock %}

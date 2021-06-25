@@ -30,9 +30,33 @@
                         {{ crianca.cpf }}
                     </td>
                     <td>
-                        <a href="vacinacao/+{{ crianca.id }}"><img id='button' src="{% static 'images/new.png' %}" alt='' width="25"></a>&nbsp&nbsp
-                        <a href="detail/+{{ crianca.id }}"><img id='button' src="{% static 'images/edit.png' %}" alt='' width="25"></a>&nbsp&nbsp
-                        <a href="delete/+{{ crianca.id }}"><img id='button' src="{% static 'images/delete.png' %}" alt='' width="25"></a>
+                        <form action="crianca/delete/{{crianca.id}}" method="POST">
+                            {% csrf_token %}
+                            <div class="modal fade" id="exampleModal{{crianca.id}}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            Deseja mesmo deletar o cadastro de {{crianca.nome}}?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary"
+                                                data-bs-dismiss="modal">Não</button>
+                                            <button type="submit" class="btn btn-danger">Sim</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{% url 'crianca_update' crianca.id %}" class="btn" style="margin: 0; padding: 0"><i
+                                    class="fas fa-user-edit"></i></a>&nbsp&nbsp
+                            <button type="button" class="btn" style="margin: 0; padding: 0" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal{{crianca.id}}">
+                                <i class="fas fa-minus-circle"></i>
+                            </button>&nbsp&nbsp
+                            <a href="{% url 'vacinacao_index' crianca.id %}" class="btn"
+                                style="margin: 0; padding: 0"><img id='button' src="{% static 'images/new.png' %}"
+                                    alt='' width="25"></a>&nbsp&nbsp
+                        </form>
                     </td>
                 </tr>
                 {% endfor %}
@@ -40,4 +64,23 @@
         </table>
     </div>
 </div>
+{% if paginator.has_next or paginator.has_previous %}
+<div class="row text-center">
+    <div class="col">
+        <span class="step-links">
+            {% if paginator.has_previous %}
+            <a href="?page=1" class="btn-sm btn-secondary">&laquo; Primeira</a>
+            <a href="?page={{ paginator.previous_page_number }}" class="btn-sm btn-light">Anterior</a>
+            {% endif %}
+            <span class="current">
+                Página {{ paginator.number }} de {{ paginator.paginator.num_pages }}.
+            </span>
+            {% if paginator.has_next %}
+            <a href="?page={{ paginator.next_page_number }}" class="btn-sm btn-light">Próxima</a>
+            <a href="?page={{ paginator.paginator.num_pages }}" class="btn-sm btn-secondary">Última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endif %}
 {% endblock %}
