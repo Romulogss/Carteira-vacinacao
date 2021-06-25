@@ -1,26 +1,29 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <form action="" method="POST">
     {% csrf_token %}
     <div class="row">
         <div class="col">
-            <label for="id_nome">Nome</label>
-            <input class="form-control" type="text" name="nome" id="id_nome" maxlength="50" placeholder="NOME COMPLETO">
+            <h2 id='central-text' class="text-center">Cadastrar Criança</h2>
         </div>
     </div>
-
     <div class="row">
         <div class="col">
-            <label for="id_nome">C.P.F</label>
-            <input class="form-control" type="text" name="cpf" id="id_cpf" maxlength="11" placeholder="00000000000">
+            <label id='inserts' for="id_nome">Nome</label>
+            <input class="form-control" type="text" name="nome" id="id_nome" maxlength="50" placeholder="Nome Completo">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label id='inserts' for="id_nome">CPF</label>
+            <input class="form-control" type="text" name="cpf" id="id_cpf" maxlength="15" placeholder="000.000.000-00">
         </div>
     </div>
     <br>
     <div class="row">
         <div class="col">
-            <button class="btn btn-success" type="submit">Salvar</button>
-            <a href="{% url 'index' %}" class="btn btn-danger">Cancelar</a>
+            <button id='save' class="btn btn-success" type="submit">Salvar</button>
+            <a id='save' href="{% url 'index' %}" class="btn btn-danger">Cancelar</a>
         </div>
     </div>
 </form>
