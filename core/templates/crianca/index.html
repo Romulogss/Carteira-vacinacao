@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-
 {% block content %}
+{% load static %}
 <div class="row">
     <div class="col">
-        <h2 class="text-center">Lista de Crianças</h2>
+        <h2 id='central-text' class="text-center">Lista de Crianças</h2>
     </div>
 </div>
 <div class="row text-center">
@@ -16,9 +16,9 @@
     <div class="col">
         <table class="table table-bordered text-center">
             <thead>
-                <th>NOME</th>
-                <th>CPF</th>
-                <th>operações</th>
+                <th id='table-top'>NOME</th>
+                <th id='table-top'>CPF</th>
+                <th id='table-top'>OPERAÇÕES</th>
             </thead>
             <tbody>
                 {% for crianca in lista_criancas %}
@@ -30,6 +30,9 @@
                         {{ crianca.cpf }}
                     </td>
                     <td>
+                        <a href="vacinacao/+{{ crianca.id }}"><img id='button' src="{% static 'images/new.png' %}" alt='' width="25"></a>&nbsp&nbsp
+                        <a href="detail/+{{ crianca.id }}"><img id='button' src="{% static 'images/edit.png' %}" alt='' width="25"></a>&nbsp&nbsp
+                        <a href="delete/+{{ crianca.id }}"><img id='button' src="{% static 'images/delete.png' %}" alt='' width="25"></a>
                     </td>
                 </tr>
                 {% endfor %}
