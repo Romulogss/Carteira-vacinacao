@@ -72,3 +72,34 @@ def vacinacao_delete(request, id):
         id_crianca = vacinacao.crianca.id
         VacinacaoDAO.delete(vacinacao.id)
         return redirect('vacinacao_index', id=id_crianca)
+
+def vacina_create(request):
+    vacina = VacinaForm(request.POST or None)
+    if vacina.is_valid():
+        vacina.save()
+        return redirect('index')
+    return render(request, 'vacina/form.html', {'form': vacina})
+
+def vacina_update(request, id):
+    vacina = VacinaDAO.find_one(id)
+    form = VacinaForm(request.POST or None, instance=vacina)
+    if form.is_valid():
+        form.save()
+        return redirect('index')
+    return render(request, 'vacina/form.html', {'vacina': vacina})
+
+def vacina_index(request):
+    lista_vacinas = VacinaDAO.find_all()
+    return render(request, 'vacina/index.html', {'lista_vacinas': lista_vacinas})
+
+def vacina(request, id):
+    result =  VacinaDAO.find_one(id)
+    return render(
+        request,
+        'vacina/detail.html',
+        {'vacina': result}
+        )
+
+def delete_vacina(request, id):
+    result = VacinaDAO.delete(id)
+    return redirect('index')
