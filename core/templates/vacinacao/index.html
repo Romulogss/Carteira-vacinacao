@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <div class="row justify-content-center" style="text-align: center;">
     <div class="col">
-        <h2> Vacinas de {{ crianca.nome }} </h2>
+        <h2 id=central-text> Vacinas de {{ crianca.nome }} </h2>
     </div>
 </div>
 <form method="POST">
@@ -13,44 +12,44 @@
     </select>
     <div class="row">
         <div class="col form-group">
-            <label for="id_vacina" class="form-label">Vacina</label>
+            <label id='inserts' for="id_vacina" class="">Vacina</label>
             <select name="vacina" class="form-control" title required id="id_vacina">
-                <option value="" selected>SELECIONE A VACINA</option>
+                <option value="" selected>Selecione uma Vacina</option>
                 {% for vacina in vacinas %}
                 <option value="{{vacina.id}}">{{ vacina }}</option>
                 {% endfor %}
             </select>
         </div>
         <div class="col form-group">
-            <label for="id_lote">Lote</label>
+            <label id='inserts' for="id_lote">Lote</label>
             <input type="text" name="lote" maxlength="20" class="form-control" placeholder="Lote" title required
                 id="id_lote">
         </div>
     </div>
     <div class="row">
         <div class="col form-group">
-            <label for="id_enfermeiro">Enfermeiro(a)</label>
+            <label id='inserts' for="id_enfermeiro">Enfermeiro(a)</label>
             <input type="text" name="enfermeiro" maxlength="50" class="form-control" placeholder="Enfermeiro(a)" title
                 required id="id_enfermeiro">
         </div>
         <div class="col form-group">
-            <label for="id_data">Data</label>
+            <label id='inserts' for="id_data">Data</label>
             <input type="date" name="data" class="form-control" placeholder="Data" title required id="id_data">
         </div>
     </div>
-    <button class="btn btn-success" type="submit">Registrar</button>
-    <button class="btn btn-danger" type="reset">Cancelar</button>
+    <button id='button' class="btn btn-success" type="submit">Registrar</button>
+    <button id='button' class="btn btn-danger" type="reset">Cancelar</button>
 </form>
 <hr>
 <div class="row">
     <div class="col">
         <table class="table table-bordered text-center">
             <thead>
-                <th>VACINA</th>
-                <th>LOTE</th>
-                <th>DATA DA APLICAÇÃO</th>
-                <th>ENFERMEIRO(A) APLICADOR(A)</th>
-                <th>Deletar</th>
+                <th id='table-top'>VACINA</th>
+                <th id='table-top'>LOTE</th>
+                <th id='table-top'>DATA DA APLICAÇÃO</th>
+                <th id='table-top'>APLICADOR(A)</th>
+                <th id='table-top'>DELETAR</th>
             </thead>
             <tbody>
                 {% for v in page_obj %}
@@ -61,11 +60,10 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-body">
-                                    Tem certeza que deseja remover a vacinação de {{v.vacina.nome}} aplicada em
-                                    {{v.data}}
+                                    Deseja mesmo deletar a vacinação de {{v.vacina.nome}} aplicada em
+                                    {{v.data}}?
                                 </div>
                                 <div class="modal-footer">
-
                                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Não</button>
                                     <button type="submit" class="btn btn-danger">Sim</button>
                                 </div>
@@ -97,11 +95,9 @@
             <a href="?page=1" class="btn-sm btn-secondary">&laquo; Primeira</a>
             <a href="?page={{ page_obj.previous_page_number }}" class="btn-sm btn-light">Anterior</a>
             {% endif %}
-
             <span class="current">
                 Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
             </span>
-
             {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}" class="btn-sm btn-light">Próxima</a>
             <a href="?page={{ page_obj.paginator.num_pages }}" class="btn-sm btn-secondary">Última &raquo;</a>
