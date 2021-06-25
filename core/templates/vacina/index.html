@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="row" id="topo">
+    <div class="col">
+        <h2 id='central-text' class="text-center">Lista de Vacinas</h2>
+    </div>
+</div>
+<div class="row text-center">
+    <div class="col">
+        <a class="btn btn-primary" href="{% url 'vacina_create' %}">Cadastrar Vacina <i class="fas fa-plus"></i></a>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col">
+        <table class="table table-bordered text-center">
+            <thead>
+                <th id='table-top'>VACINA</th>
+                <th id='table-top'>FABRICANTE</th>
+                <th id='table-top'>DESCRIÇÃO</th>
+                <th id='table-top'>OPERAÇÕES</th>
+            </thead>
+            <tbody>
+                {% for vacina in lista_vacinas %}
+                <tr>
+                    <td>
+                        {{ vacina.nome }}
+                    </td>
+                    <td>
+                        {{ vacina.fabricante }}
+                    </td>
+                    <td>
+                        {{ vacina.descricao }}
+                    </td>
+                    <td>
+                        <a href="v_detail/+{{ vacina.id }}"><img id='button' src="{% static 'images/edit.png' %}" alt='' width="25"></a>&nbsp&nbsp
+                        <a href="v_delete/+{{ vacina.id }}"><img id='button' src="{% static 'images/delete.png' %}" alt='' width="25"></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

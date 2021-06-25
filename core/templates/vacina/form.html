@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col">
+            <label id='inserts' for="id_nome">Vacina</label>
+            <input class="form-control" type="text" name="nome" id="id_nome" maxlength="50" placeholder="Nome de Identificação">
+        </div>
+    <div class="row">
+        <div class="col">
+            <label id='inserts' for="id_nome">Fabricação</label>
+            <input class="form-control" type="text" name="fabricante" id="id_fab" maxlength="50" placeholder="Fabricante da Vacina">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label id='inserts' for="id_nome">Descrição</label>
+            <input class="form-control" type="text" name="descricao" id="id_desc" maxlength="100" placeholder="Efeito da Vacina">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <button id='save2' class="btn btn-success" type="submit">Salvar</button>
+            <a id="save2" href="{% url 'v_index' %}" class="btn btn-danger">Cancelar</a>
+        </div>
+    </div>
+</form>
+{% endblock %}
