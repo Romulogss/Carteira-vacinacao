@@ -32,8 +32,25 @@ class CriancaDAO:
     @staticmethod
     def delete(id) -> str :
         crianca = __class__.find_one(id)
-        nome = crianca.nome
         crianca.delete()
+
+class VacinaDAO:
+    manager = Vacina.objects
+
+    @staticmethod
+    def find_all():
+        vacinas = get_list_or_404(Vacina)
+        return vacinas
+
+    @staticmethod
+    def find_one(id):
+        vacina = get_object_or_404(Vacina, pk=id)
+        return vacina
+
+    @staticmethod
+    def delete(id):
+        vacina = __class__.find_one(id)
+        vacina.delete()
 
 class VacinacaoDAO:
     manager = Vacinacao.objects
@@ -51,12 +68,3 @@ class VacinacaoDAO:
     def delete(id):
         vacinacao = get_object_or_404(Vacinacao, pk=id)
         vacinacao.delete()
-
-
-class VacinaDAO:
-    manager = Vacina.objects
-
-    @staticmethod
-    def find_all():
-        vacinas = get_list_or_404(Vacina)
-        return vacinas

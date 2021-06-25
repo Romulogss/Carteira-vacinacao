@@ -14,20 +14,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <title>Vacinas de {{ crianca.nome }}</title>
-    <link rel="icon" type="image/png" sizes="50x50" href="{% static 'zegotinha.png' %}">
-    <style>
-        fa-minus-circle {
-            color: red;
-            background-color: red;
-        }
-    </style>
+    <link rel="icon" type="image/png" sizes="50x50" href="{% static 'images/zegotinha.png' %}">
 </head>
 
 <body class="container">
-    {% load bootstrap4 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript jquery='full' %}
-    {% bootstrap_messages %}
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light text-center" style="margin: 1rem 0">
         <div class="container-fluid text-center">
@@ -35,7 +25,7 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-link" aria-current="page" href="{% url 'index' %}">Lista de Crianças</a>
-              <a class="nav-link" href="#">Lista de vacinas</a>
+              <a class="nav-link" href="{% url 'vacina_index' %}">Lista de vacinas</a>
             </div>
           </div>
         </div>

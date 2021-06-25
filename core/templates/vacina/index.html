@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<div class="row" id="topo">
+<div class="row">
     <div class="col">
         <h2 id='central-text' class="text-center">Lista de Vacinas</h2>
     </div>
@@ -16,10 +16,10 @@
     <div class="col">
         <table class="table table-bordered text-center">
             <thead>
-                <th id='table-top'>VACINA</th>
-                <th id='table-top'>FABRICANTE</th>
-                <th id='table-top'>DESCRIÇÃO</th>
-                <th id='table-top'>OPERAÇÕES</th>
+                <th>VACINA</th>
+                <th>FABRICANTE</th>
+                <th>DESCRIÇÃO</th>
+                <th>OPERAÇÕES</th>
             </thead>
             <tbody>
                 {% for vacina in lista_vacinas %}
@@ -34,8 +34,12 @@
                         {{ vacina.descricao }}
                     </td>
                     <td>
-                        <a href="v_detail/+{{ vacina.id }}"><img id='button' src="{% static 'images/edit.png' %}" alt='' width="25"></a>&nbsp&nbsp
-                        <a href="v_delete/+{{ vacina.id }}"><img id='button' src="{% static 'images/delete.png' %}" alt='' width="25"></a>
+                        <a href="{% url 'vacina_update' vacina.id %}" class="btn" style="margin: 0; padding: 0" title="Editar {{vacina.nome}}"><i
+                                    class="fas fa-user-edit"></i></a>&nbsp&nbsp
+                            <button type="button" class="btn" style="margin: 0; padding: 0" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal{{vacina.id}}" title="Excluir {{vacina.nome}}">
+                                <i class="fas fa-minus-circle"></i>
+                            </button>
                     </td>
                 </tr>
                 {% endfor %}

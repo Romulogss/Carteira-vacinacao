@@ -19,17 +19,16 @@ from django.urls import path
 from core.views import (
     crianca_index,
     crianca_create,
-    crianca,
     crianca_update,
-    delete_crianca,
+    crianca_delete,
 
     vacinacao_delete,
     vacinacao_index,
 
     vacina_index,
     vacina_create,
-    vacina,
-    delete_vacina,
+    vacina_update,    
+    vacina_delete,
 )
 
 urlpatterns = [
@@ -38,13 +37,13 @@ urlpatterns = [
     path('', crianca_index, name='index'),
     path('crianca/create', crianca_create, name='crianca_create'),
     path('crianca/update/<str:id>', crianca_update, name='crianca_update'),
-    path('crianca/delete/<str:id>', delete_crianca, name='crianca_delete'),
+    path('crianca/delete/<str:id>', crianca_delete, name='crianca_delete'),
 
     path('vacinacao/<str:id>', vacinacao_index, name='vacinacao_index'),
     path('vacinacao/delete/<str:id>', vacinacao_delete, name='vacinacao_delete'),
 
-    path('v', vacina_index, name='v_index'),
-    path('vacina', vacina_create, name='vacina_create'),
-    path('v_detail/<str:id>', vacina, name='v_detail'),
-    path('v_delete/<str:id>', delete_vacina, name='vacina_delete'),
+    path('vacina', vacina_index, name='vacina_index'),
+    path('vacina/create', vacina_create, name='vacina_create'),
+    path('vacina/update/<str:id>', vacina_update, name='vacina_update'),
+    path('vacina/delete/<str:id>', vacina_delete, name='vacina_delete'),
 ]

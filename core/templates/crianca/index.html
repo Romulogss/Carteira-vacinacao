@@ -47,15 +47,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{% url 'crianca_update' crianca.id %}" class="btn" style="margin: 0; padding: 0"><i
+                            <a href="{% url 'crianca_update' crianca.id %}" class="btn" style="margin: 0; padding: 0" title="Editar {{crianca.nome}}"><i
                                     class="fas fa-user-edit"></i></a>&nbsp&nbsp
                             <button type="button" class="btn" style="margin: 0; padding: 0" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal{{crianca.id}}">
+                                data-bs-target="#exampleModal{{crianca.id}}" title="Excluir {{crianca.nome}}">
                                 <i class="fas fa-minus-circle"></i>
                             </button>&nbsp&nbsp
                             <a href="{% url 'vacinacao_index' crianca.id %}" class="btn"
-                                style="margin: 0; padding: 0"><img id='button' src="{% static 'images/new.png' %}"
-                                    alt='' width="25"></a>&nbsp&nbsp
+                                style="margin: 0; padding: 0" title="Listar ou cadastrar vacinação de {{crianca.nome}}"><img id='button' src="{% static 'images/new.png' %}"
+                                    alt="Lista de vacinações" width="25"></a>&nbsp&nbsp
                         </form>
                     </td>
                 </tr>
