@@ -9,14 +9,14 @@
     </div>
     <div class="row">
         <div class="col">
-            <label id='inserts' for="id_nome">Nome</label>
+            <label for="id_nome">Nome</label>
             <input class="form-control" type="text" name="nome" id="id_nome" maxlength="50" placeholder="Nome Completo" {% if crianca %}value="{{ crianca.nome }}"{% endif %}>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <label id='inserts' for="id_nome">CPF</label>
-            <input class="form-control" type="text" name="cpf" id="id_cpf" maxlength="15" placeholder="000.000.000-00" {% if crianca %}value="{{ crianca.cpf }}"{% endif %}>
+            <label for="id_nome">CPF</label>
+            <input class="form-control" type="text" name="cpf" id="id_cpf" maxlength="14" oninput="mascaraCPF(this.id)" {% if crianca %}value="{{ crianca.cpf }}"{% endif %}>
         </div>
     </div>
     <br>

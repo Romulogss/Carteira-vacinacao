@@ -34,12 +34,30 @@
                         {{ vacina.descricao }}
                     </td>
                     <td>
-                        <a href="{% url 'vacina_update' vacina.id %}" class="btn" style="margin: 0; padding: 0" title="Editar {{vacina.nome}}"><i
-                                    class="fas fa-user-edit"></i></a>&nbsp&nbsp
+                        <form action="vacina/delete/{{vacina.id}}" method="POST">
+                            {% csrf_token %}
+                            <div class="modal fade" id="exampleModal{{vacina.id}}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            Deseja mesmo deletar o cadastro de {{vacina.nome}}?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary"
+                                                data-bs-dismiss="modal">Não</button>
+                                            <button type="submit" class="btn btn-danger">Sim</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{% url 'vacina_update' vacina.id %}" class="btn" style="margin: 0; padding: 0" title="Editar {{vacina.nome}}"><i
+                                        class="fas fa-user-edit"></i></a>&nbsp&nbsp
                             <button type="button" class="btn" style="margin: 0; padding: 0" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal{{vacina.id}}" title="Excluir {{vacina.nome}}">
                                 <i class="fas fa-minus-circle"></i>
                             </button>
+                            </form>
                     </td>
                 </tr>
                 {% endfor %}

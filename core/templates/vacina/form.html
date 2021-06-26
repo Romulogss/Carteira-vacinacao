@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<form action="" method="POST">
+<form method="POST">
     {% csrf_token %}
     <div class="row">
         <div class="col">
@@ -16,7 +16,8 @@
     <div class="row">
         <div class="col">
             <label id='inserts' for="id_nome">Descrição</label>
-            <textarea class="form-control" name="descricao" id="id_desc" placeholder="Efeito da Vacina" {% if vacina %}value="{{ vacina.descricao }}"{% endif %}>
+            <textarea class="form-control" name="descricao" id="id_desc" placeholder="Efeito da Vacina" {% if vacina %}{% endif %}>
+            {{ vacina.descricao }}
             </textarea>
         </div>
     </div>

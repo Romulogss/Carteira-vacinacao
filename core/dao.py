@@ -1,21 +1,16 @@
-from django.shortcuts import get_list_or_404, get_object_or_404
+from django.shortcuts import get_object_or_404
 from .models import (
     Crianca,
     Vacina,
     Vacinacao,
 )
-from pprint import pprint
 
 class CriancaDAO:
     manager = Crianca.objects
 
     @staticmethod
-    def save(crianca):
-        pass
-
-    @staticmethod
     def find_all():
-        criancas = __class__.manager.all()
+        criancas = __class__.manager.order_by('-id').all()
         return criancas
 
     @staticmethod
@@ -30,7 +25,7 @@ class CriancaDAO:
         return vacinas
 
     @staticmethod
-    def delete(id) -> str :
+    def delete(id):
         crianca = __class__.find_one(id)
         crianca.delete()
 
@@ -39,7 +34,7 @@ class VacinaDAO:
 
     @staticmethod
     def find_all():
-        vacinas = get_list_or_404(Vacina)
+        vacinas = __class__.manager.all()
         return vacinas
 
     @staticmethod
@@ -54,6 +49,7 @@ class VacinaDAO:
 
 class VacinacaoDAO:
     manager = Vacinacao.objects
+
     @staticmethod
     def find_all():
         vacinacao = __class__.manager.all()
