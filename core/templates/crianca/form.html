@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load filter %}
 <form action="" method="POST">
     {% csrf_token %}
     <div class="row">
@@ -16,7 +17,7 @@
     <div class="row">
         <div class="col">
             <label for="id_nome">CPF</label>
-            <input class="form-control" type="text" name="cpf" id="id_cpf" maxlength="14" oninput="mascaraCPF(this.id)" {% if crianca %}value="{{ crianca.cpf }}"{% endif %}>
+            <input class="form-control" type="text" name="cpf" id="id_cpf" maxlength="14" oninput="mascaraCPF(this.id)" {% if crianca %}value="{{ crianca.cpf|mascara_cpf }}"{% endif %}>
         </div>
     </div>
     <br>

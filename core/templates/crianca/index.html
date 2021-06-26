@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+{% load filter %}
 <div class="row">
     <div class="col">
         <h2 id='central-text' class="text-center">Lista de Crianças</h2>
@@ -27,7 +28,7 @@
                         {{ crianca.nome }}
                     </td>
                     <td>
-                        {{ crianca.cpf }}
+                        {{ crianca.cpf|mascara_cpf }}
                     </td>
                     <td>
                         <form action="crianca/delete/{{crianca.id}}" method="POST">

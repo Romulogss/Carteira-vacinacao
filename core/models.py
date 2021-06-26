@@ -7,7 +7,7 @@ class Crianca(models.Model):
         max_length=50
         )
     cpf = models.CharField(
-        max_length=15,
+        max_length=11,
         unique=True
         )
 

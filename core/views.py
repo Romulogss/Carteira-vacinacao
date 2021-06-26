@@ -65,6 +65,16 @@ def crianca_create(request):
 
 def crianca_update(request, id):
     # Pegando o objeto que foi solicitado editar
+    try:
+        print(request.POST['cpf'])
+        _mutable = request.POST._mutable
+        request.POST._mutable = not _mutable
+        cpf_with_mask = request.POST['cpf']
+        cpf_without_mask = Utils.remove_cpf_mask(cpf_with_mask)
+        request.POST['cpf'] = cpf_without_mask
+        request.POST._mutable = _mutable
+    except Exception:
+        pass
     crianca = CriancaDAO.find_one(id)
     form = CriancaForm(
         request.POST or None,
