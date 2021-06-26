@@ -2,47 +2,4 @@
 
 body {
     background-color: #F8F9FA;
-  }
-
-div#cabecalho {
-    background-color: gainsboro;
-    position: relative;
-    padding: 10px 10px 10px 10px;
-    margin: 0px 10px 10px 10px;
-    border-radius: 10px;
-  }
-
-th#table-top {
-    background-color: gainsboro;
-}
-
-h2#central-text {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    position: relative;
-    height: 50px;
-    margin: none none 100px none;;
-    padding: none none 100px none;
-}
-
-td {
-    font-size: 16pt;
-}
-
-label#inserts {
-    margin: 10px 10px 10px 0px;
-}
-
-button#button {
-    position: relative;
-    margin: 15px 10px 0px 0px;
-}
-
-#save {
-    position: relative;
-    margin: -10px 10px 0px 0px;
-}
-
-#save2 {
-    position: relative;
-    margin: 15px 10px 0px 0px;
 }

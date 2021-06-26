@@ -46,7 +46,7 @@
     <div class="row">
         <div class="col">
             <table class="table table-bordered text-center">
-                <thead>
+                <thead class="table-primary">
                     <th id='table-top'>VACINA</th>
                     <th id='table-top'>LOTE</th>
                     <th id='table-top'>DATA DA APLICAÇÃO</th>
@@ -79,7 +79,7 @@
                         <td>{{ v.data }}</td>
                         <td>{{ v.enfermeiro }}</td>
                         <td>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            <button type="button" class="btn" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal{{v.id}}">
                                 <i class="fas fa-minus-circle"></i>
                             </button>
