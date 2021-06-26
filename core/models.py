@@ -31,7 +31,7 @@ class Vacina(models.Model):
 
 class Vacinacao(models.Model):
     lote = models.CharField(
-        max_length=20
+        max_length=10
         )
     data = models.DateField()
     enfermeiro = models.CharField(
