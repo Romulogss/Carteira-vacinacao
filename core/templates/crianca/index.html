@@ -54,9 +54,9 @@
                                 data-bs-target="#exampleModal{{crianca.id}}" title="Excluir {{crianca.nome}}">
                                 <i class="fas fa-minus-circle"></i>
                             </button>&nbsp&nbsp
-                            <a href="{% url 'vacinacao_index' crianca.id %}" class="btn"
-                                style="margin: 0; padding: 0" title="Listar ou cadastrar vacinação de {{crianca.nome}}"><img id='button' src="{% static 'images/new.png' %}"
-                                    alt="Lista de vacinações" width="25"></a>&nbsp&nbsp
+                            <a href="{% url 'vacinacao_index' crianca.id %}" class="btn" style="margin: 0; padding: 0" title="Listar ou cadastrar vacinação de {{crianca.nome}}">
+                                <img id='button' src="{% static 'images/new.png' %}" width="25">
+                            </a>&nbsp&nbsp
                         </form>
                     </td>
                 </tr>
